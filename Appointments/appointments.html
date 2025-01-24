@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="appointments.css">
+
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+
+    <title>Appointments</title>
+</head>
+<body>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="appointments-logo.png" alt="Appointments Logo">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">Appointments</span>
+                    <span class="profession">Queuing System</span>
+                </div>
+            </div>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="appointments.html">
+                            <i class='bx bx-home-alt icon'></i>
+                            <span class="text nav-text">Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="appointments.html">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Appointments</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="bottom-content">
+                <li>
+                    <a href="appointments-login.html">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <section class="content-section">
+        <h1>Appointments</h1>
+        <div class="appointment-controls">
+            <input type="text" id="appointment-name" placeholder="Enter your Student No." required>
+            <select id="document-type" required>
+                <option value="" disabled selected>Select Document</option>
+                <option value="SOG">SOG (Summary of Grades)</option>
+                <option value="TOR">TOR (Transcript of Record)</option>
+                <option value="Diploma">Diploma</option>
+                <option value="Documentary Stamp">Documentary Stamp</option>
+            </select>
+            <input type="date" id="appointment-date" required>
+            <input type="time" id="appointment-time" required>
+            <button onclick="bookAppointment()">Book Appointment</button>
+        </div>
+        <div class="appointment-list">
+            <h2>Upcoming Appointments:</h2>
+            <ul id="appointment-list"></ul>
+        </div>
+        <div class="appointment-calendar">
+            <h2>Appointment Calendar:</h2>
+            <table id="appointment-calendar">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Student No.</th>
+                        <th>Document</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Appointments will be added here -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- JavaScript -->
+    <script src="appointments.js"></script>
+</body>
+</html>
