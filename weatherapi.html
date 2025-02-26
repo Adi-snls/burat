@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            text-align: left;
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap;
+        }
+    </style>
+    <script defer>
+        const API_KEY = "9a20f197626121974faddbbf32244343";
+        async function fetchWeather() {
+            const city = document.getElementById("city").value;
+            if (!city) {
+                alert("Please enter a city name");
+                return;
+            }
+            
+            const url = `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${city}&aqi=no`;
+            
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                
+                if (data.error) {
+                    document.getElementById("result").textContent = `Error: ${data.error.message}`;
+                } else {
+                    document.getElementById("result").textContent = `
+                        City: ${data.location.name}, ${data.location.country}\n
+                        Temperature: ${data.current.temp_c}°C\n
+                        Feels Like: ${data.current.feelslike_c}°C\n
+                        Description: ${data.current.condition.text}\n
+                        Humidity: ${data.current.humidity}%\n
+                        Wind Speed: ${data.current.wind_kph} km/h\n
+                        Cloudiness: ${data.current.cloud}%\n
+                        Last Updated: ${data.current.last_updated}
+                    `;
+                }
+            } catch (error) {
+                document.getElementById("result").textContent = "Error fetching data.";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Weather API Website</h2>
+        <label for="city">Enter City:</label>
+        <input type="text" id="city" placeholder="Enter city name">
+        <button onclick="fetchWeather()">Get Weather</button>
+        <h3>Result:</h3>
+        <pre id="result"></pre>
+    </div>
+</body>
+</html>
